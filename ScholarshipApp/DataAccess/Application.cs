@@ -18,7 +18,7 @@ namespace ScholarshipApp.DataAccess
         public string University { get; set; }
         public string Major { get; set; }
         public float GPA { get; set; }
-        public string  ResumePath { get; set; }
+        public string  ResumeFileName { get; set; }
         public int?  IsAccepted { get; set; }
     }
 
@@ -37,7 +37,7 @@ namespace ScholarshipApp.DataAccess
             Property(p => p.University).IsRequired();
             Property(p => p.Major).IsRequired();
             Property(p => p.GPA).IsRequired();
-            Property(p => p.ResumePath).IsRequired();
+            Property(p => p.ResumeFileName).IsRequired();
             Property(p => p.IsAccepted).IsOptional();
         }
     }
