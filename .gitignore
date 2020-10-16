@@ -1,2 +1,5 @@
 .vs/
-ScholarshipApp/obj/
+ScholarshipApp/obj/*
+ScholarshipApp/bin/*
+*.cache
+*.dll
