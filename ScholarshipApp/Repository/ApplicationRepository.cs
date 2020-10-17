@@ -118,7 +118,7 @@ namespace ScholarshipApp.Repository
             }
         }
 
-        public bool updateApplicationStatus(int id, int status)
+        public int? updateApplicationStatus(int id, int status)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace ScholarshipApp.Repository
                     var studentApplication = _databaseContext.Applications.First(a => a.Id == id);
                     studentApplication.IsAccepted = status;
                     _databaseContext.SaveChanges();
-                    return true;
+                    return studentApplication.UserId;
                 }
 
             }

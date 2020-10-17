@@ -8,15 +8,20 @@ namespace ScholarshipApp.Utilities
 {
     public class FileUtility
     {
+        private readonly string _path;
+
+        public FileUtility()
+        {
+            _path = System.Configuration.ConfigurationManager.AppSettings["ResumesFolderPath"];
+        }
         public string SaveResume(HttpPostedFileBase resume)
         {
-            string path = System.Configuration.ConfigurationManager.AppSettings["ResumesFolderPath"];
 
             Guid guid = Guid.NewGuid();
             // Add unique guid to the file name to avoid duplications while saving resumes
             string fileName = Path.GetFileNameWithoutExtension(resume.FileName) + "_" + guid + ".pdf";
 
-            resume.SaveAs(Path.Combine(path, fileName));
+            resume.SaveAs(Path.Combine(_path, fileName));
             return fileName;
         }
 

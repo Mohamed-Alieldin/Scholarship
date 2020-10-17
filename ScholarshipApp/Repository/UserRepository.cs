@@ -32,6 +32,23 @@ namespace ScholarshipApp.Repository
 
         }
 
+        public User GetUser(int Id)
+        {
+            try
+            {
+                using (_databaseContext)
+                {
+                    var user = _databaseContext.Users.First(u => u.Id == Id  && u.Role == "student");
+                    return user;
+                }
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public User AdminSignIn(string email, string password)
         {
             try
