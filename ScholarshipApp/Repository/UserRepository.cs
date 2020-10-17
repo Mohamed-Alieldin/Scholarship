@@ -49,5 +49,25 @@ namespace ScholarshipApp.Repository
             }
 
         }
+
+        public int? AddStudent(User user)
+        {
+            try
+            {
+                using (_databaseContext)
+                {
+                    _databaseContext.Users.Add(user);
+                    _databaseContext.SaveChanges();
+
+                    return user.Id;
+                }
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
     }
 }

@@ -1,7 +1,143 @@
-﻿
+﻿@model ScholarshipApp.Models.Application.ApplicationViewModel
+
 @{
     ViewBag.Title = "AddApplication";
 }
 
-<h2>AddApplication</h2>
+<div class="jumbotron">
+        @{ 
+            if(TempData["SubmitError"] != null && TempData["SubmitError"].ToString() == "True")
+            {
+            <div class="alert alert-danger" role="alert">
+                Faied to submit your application, try again
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            }
+        }
+    <h2 class="text-center">Application Submit</h2>
+    <p class="lead">Please, fill all the following fields.</p>
+
+    @using (Html.BeginForm("Apply", "Application", FormMethod.Post, new { @id = "applyFormId", @class = "form-horizontal", role = "form" , enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger " })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.BirthDate, new { @class = "form-control"})
+                @Html.ValidationMessageFor(m => m.BirthDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NationalId, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.NationalId, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.NationalId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.University, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.University, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.University, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Major, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Major, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Major, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.GPA, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.GPA, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.GPA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Resume, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Resume, new { type = "file", @class = "input-file" })
+                @Html.ValidationMessageFor(m => m.Resume, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+            </div>
+        </div>
+
+
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/custom-validator")*@
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('input[type=datetime]').datepicker({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+        });
+
+        //$('.datepicker').datepicker(); //Initialise any date pickers
+    });
+</script>
+
+
+
+
 

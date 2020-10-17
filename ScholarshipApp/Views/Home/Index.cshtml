@@ -4,6 +4,32 @@
 
 <div class="jumbotron">
     <div class="text-center">
+        @{
+                if ((TempData["SubmitSuccess"] != null && TempData["SubmitSuccess"].ToString() == "True") ||
+                    (TempData["EditSuccess"] != null && TempData["EditSuccess"].ToString() == "True"))
+                {
+                    string successMessage = TempData["SubmitSuccess"] == null ?
+                    "Your application is edited successfully.": "Your application is submitted successfully.";
+                <div class="alert alert-success" role="alert">
+                    @successMessage
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                }
+
+                if ((TempData["StudentSignInError"] != null && TempData["StudentSignInError"].ToString() == "True") ||
+                    ((TempData["StudentGetApplicationError"] != null && TempData["StudentGetApplicationError"].ToString() == "True")))
+                {
+                    string errorMessage = TempData["StudentSignInError"] != null ? "Either email or password is not correct." : "Error in loading your application, try again.";
+                <div class="alert alert-danger" role="alert">
+                    @errorMessage
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        }
         <h1>Scholarship Registeration</h1>
         <p class="lead">Welcome to the scholarship applications submission platform.</p>
         <p class="lead">
@@ -11,13 +37,8 @@
             or Sign-in to edit your application.
         </p>
 
-        @{ 
-            if(TempData["StudentSignInError"] != null && TempData["StudentSignInError"].ToString() == "True")
-            {
-                <p style="color:red">Either email or password is not correct.</p>
-            }
-        }
-        
+
+
         <form method="post" action="/Home/SignIn/">
             <input type="text" name="Email" id="Email" placeholder="Email" />
             <input type="password" name="Password" id="Password" placeholder="Password" />
