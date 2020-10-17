@@ -119,20 +119,7 @@ namespace ScholarshipApp.Controllers
                 
                 if (TempData["ApplicationId_TobeEdited"] != null)
                 {
-                    DataAccess.Application applicationModel = new DataAccess.Application
-                    {
-                        Id = (int)TempData["ApplicationId_TobeEdited"],
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        BirthDate = model.BirthDate.ToShortDateString(),
-                        NationalId = model.NationalId,
-                        University = model.University,
-                        Major = model.Major,
-                        GPA = model.GPA,
-                        ResumeFileName = resumeFileName
-                    };
-
-                    int? applicationId = _applicationRepository.EditApplication(applicationModel);
+                    int? applicationId = _applicationRepository.EditApplication(model, (int)TempData["ApplicationId_TobeEdited"], resumeFileName);
 
                     if (applicationId != null)
                     {

@@ -38,22 +38,26 @@ namespace ScholarshipApp.Repository
         }
 
 
-        public int? EditApplication(Application newApplication)
+        public int? EditApplication(ApplicationViewModel newApplication,int id, string resumeFileName)
         {
             try
             {
                 using (_databaseContext)
                 {
-                    var application = _databaseContext.Applications.First(a => a.Id == newApplication.Id);
+                    var application = _databaseContext.Applications.First(a => a.Id == id);
                     application.FirstName = newApplication.FirstName;
                     application.LastName = newApplication.LastName;
-                    application.BirthDate = newApplication.BirthDate;
+                    application.BirthDate = newApplication.BirthDate.ToShortDateString();
                     application.NationalId = newApplication.NationalId;
                     application.University = newApplication.University;
                     application.Major = newApplication.Major;
                     application.GPA = newApplication.GPA;
-                    application.ResumeFileName = string.IsNullOrEmpty(newApplication.ResumeFileName) ?
-                        application.ResumeFileName : newApplication.ResumeFileName;
+                    application.ResumeFileName = string.IsNullOrEmpty(resumeFileName) ?
+                    application.ResumeFileName : resumeFileName;
+
+                    var user = _databaseContext.Users.First(u => u.Id == application.UserId);
+                    user.Email = newApplication.Email;
+                    user.Password = newApplication.Password;
 
                     _databaseContext.SaveChanges();
 
