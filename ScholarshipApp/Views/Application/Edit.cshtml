@@ -1,0 +1,133 @@
+﻿@model ScholarshipApp.Models.Application.ApplicationViewModel
+@{
+    ViewBag.Title = "Edit Application";
+}
+
+
+
+<div class="jumbotron">
+
+    <h2 class="text-center">Application Edit</h2>
+    <p class="lead">Please, fill all the following fields.</p>
+
+    @using (Html.BeginForm("Edit", "Application", FormMethod.Post, new { @id = "editFormId", @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" , @value = Model.Password})
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger " })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.BirthDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.BirthDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NationalId, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.NationalId, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.NationalId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.University, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.University, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.University, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Major, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Major, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Major, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.GPA, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.GPA, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.GPA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Resume, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Resume, new { type = "file", @class = "input-file" })
+                @Html.ValidationMessageFor(m => m.Resume, "", new { @class = "text-danger" })
+                <small id="fileHelp" class="form-text text-muted">Upload new resume or leave empty.</small>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-primary btn-lg" value="Edit" />
+            </div>
+        </div>
+
+
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/custom-validator")*@
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('input[type=datetime]').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+        //$('.datepicker').datepicker(); //Initialise any date pickers
+    });
+</script>
+

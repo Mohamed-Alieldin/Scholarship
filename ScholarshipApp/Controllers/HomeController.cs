@@ -33,6 +33,8 @@ namespace ScholarshipApp.Controllers
             User adminUser = _userRepository.AdminSignIn(email, password);
             if(adminUser != null)
             {
+                TempData["AdminEmail"] = email;
+                TempData["AdminPassword"] = password;
                 // got to applications list
             }
             else
@@ -46,13 +48,13 @@ namespace ScholarshipApp.Controllers
         [HttpPost]
         public ActionResult SignIn(string email, string password)
         {
-            // we will use tempdata to keep both email and passwords as needed
-            // This should be changed when sessions are configured
             User studentUser = _userRepository.StudentSignIn(email, password);
             if(studentUser != null)
             {
+                TempData["Email"] = email;
+                TempData["Password"] = password;
                 // go to student application to edit
-
+                return RedirectToAction("Edit", "Application", new { id = studentUser.Id });                
             }
             else
             {
@@ -60,8 +62,6 @@ namespace ScholarshipApp.Controllers
                 return RedirectToAction("Index");
             }
 
-
-            return View();
         }
     }
 }
