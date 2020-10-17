@@ -133,7 +133,7 @@ namespace ScholarshipApp.Repository
             }
             catch (Exception e)
             {
-                return false;
+                return null;
             }
         }
 

@@ -36,7 +36,6 @@ namespace ScholarshipApp.Controllers
                 if (isStatusUpdated)
                 {
                     return Json(new { success = true });
-
                 }
             }
             return Json(new { success = false });
