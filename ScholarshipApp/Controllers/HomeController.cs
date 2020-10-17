@@ -35,14 +35,13 @@ namespace ScholarshipApp.Controllers
             {
                 TempData["AdminEmail"] = email;
                 TempData["AdminPassword"] = password;
-                // got to applications list
+
+                return RedirectToAction("PreviewApplications", "Admin");
             }
-            else
-            {
-                TempData["AdminSignInError"] = "True";
-                return RedirectToAction("AdminSignIn");
-            }
-            return View();
+
+            TempData["AdminSignInError"] = "True";
+            return RedirectToAction("AdminSignIn");
+            
         }
 
         [HttpPost]

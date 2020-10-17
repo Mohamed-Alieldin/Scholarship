@@ -13,12 +13,27 @@
                 <p style="color:red">Either email or password is not correct.</p>
             }
         }
-        <form method="post" action="/Home/SignIn/">
-            <input type="text" name="Email" id="Email" placeholder="Email" />
 
-            <input type="password" name="Password" id="Password" placeholder="Password" />
-            <button class="btn btn-primary btn-lg" type="submit">Sign-In</button>
-        </form>
+    <form class="form-horizontal" method="post" action="/Home/AdminSignIn/">
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="text" name="Email" id="Email" placeholder="Email" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="password" name="Password" id="Password" placeholder="Password" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <button class="btn btn-primary btn-lg" type="submit">Sign-In</button>
+            </div>
+        </div>
+
+    </form>
     </div>
 
 </div>
